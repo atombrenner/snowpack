@@ -250,12 +250,13 @@ async function openInExistingChromeBrowser(url: string) {
   }
 }
 export async function openInBrowser(
+  browser: string,
   protocol: string,
   hostname: string,
   port: number,
-  browser: string,
+  path: string,
 ): Promise<void> {
-  const url = `${protocol}//${hostname}:${port}`;
+  const url = `${protocol}//${hostname}:${port}${path}`;
   browser = /chrome/i.test(browser)
     ? appNames[process.platform]['chrome']
     : /brave/i.test(browser)

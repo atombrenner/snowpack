@@ -1276,8 +1276,9 @@ export async function startServer(commandOptions: CommandOptions): Promise<Snowp
   });
 
   // Open the user's browser (ignore if failed)
+  const path = config.mount.public?.url ?? '/';
   if (open !== 'none') {
-    await openInBrowser(protocol, hostname, port, open).catch((err) => {
+    await openInBrowser(open, protocol, hostname, port, path).catch((err) => {
       logger.debug(`Browser open error: ${err}`);
     });
   }
